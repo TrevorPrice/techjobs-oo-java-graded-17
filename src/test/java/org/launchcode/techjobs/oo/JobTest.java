@@ -2,6 +2,7 @@ package org.launchcode.techjobs.oo;
 
 import org.junit.Test;
 
+import static java.lang.System.lineSeparator;
 import static org.junit.Assert.*;
 
 public class JobTest {
@@ -38,8 +39,8 @@ public class JobTest {
     @Test
     public void testToStringStartsAndEndsWithNewLine() {
         Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertEquals(System.lineSeparator(), testJob.toString().charAt(0));
-        assertEquals(System.lineSeparator(), testJob.toString().charAt(testJob.toString().length()-1));
+        assertEquals(System.lineSeparator(), String.valueOf(testJob.toString().charAt(0)));
+        assertEquals(System.lineSeparator(), String.valueOf(testJob.toString().charAt(testJob.toString().length()-1)));
     }
 
     @Test
@@ -52,20 +53,20 @@ public class JobTest {
                 "Location: " + testJob.getLocation() + System.lineSeparator() +
                 "Position Type: " + testJob.getPositionType() + System.lineSeparator() +
                 "Core Competency: " + testJob.getCoreCompetency() + System.lineSeparator();
-        assertEquals(testJob.toString(), jobString);
+        assertEquals(jobString, testJob.toString());
     }
 
     @Test
     public void testToStringHandlesEmptyField() {
-        Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
+        Job testJob = new Job("Product tester", new Employer(""), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
         String emptyJobValues = System.lineSeparator() +
                 "ID: " + testJob.getId() + System.lineSeparator() +
                 "Name: " + testJob.getName() + System.lineSeparator() +
-                "Employer: " + testJob.getEmployer() + System.lineSeparator() +
+                "Employer: Data not available" + System.lineSeparator() +
                 "Location: " + testJob.getLocation() + System.lineSeparator() +
                 "Position Type: " + testJob.getPositionType() + System.lineSeparator() +
                 "Core Competency: " + testJob.getCoreCompetency() + System.lineSeparator();
-        assertEquals(testJob.toString(), emptyJobValues);
+        assertEquals(emptyJobValues, testJob.toString());
 
     }
 }
